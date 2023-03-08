@@ -11,7 +11,7 @@ run-container:
 
 setup-container:
 	pyenv install -s 3.10.9;
-	pyenv global 3.10.9;
+	pyenv local 3.10.9;
 	python3 -m pip install -U pip && \
 	python3 -m pip install pipenv;
 	pyenv rehash;
@@ -19,6 +19,6 @@ setup-container:
 
 lib:
 	c++ -O3 -Wall -shared -std=c++11 \
-	-o libexample$$(python-config --extension-suffix) \
 	-fPIC $$(python3 -m pybind11 --includes) \
+	-o libexample$$(python-config --extension-suffix) \
 	example.cpp
